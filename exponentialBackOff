@@ -1,0 +1,14 @@
+#include <unistd.h>
+
+// ...
+
+useconds_t delay = 100000; // Delay in usec
+
+while (!compare_and_swap(&mutex, 0, 1))
+{
+    usleep(delay);
+    if (delay < MAX_DELAY)
+    {
+        delay *= 2;
+    }
+}
